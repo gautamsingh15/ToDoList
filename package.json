@@ -1,0 +1,26 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "ToDo list ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gautamsingh15/ToDoList.git"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Gautam Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gautamsingh15/ToDoList/issues"
+  },
+  "homepage": "https://github.com/gautamsingh15/ToDoList#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
