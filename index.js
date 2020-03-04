@@ -1,4 +1,5 @@
 const express=require('express');
+const path=require('path');
 const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
@@ -6,10 +7,27 @@ const db=require('./config/mongoose');
 app.use(expressLayouts);
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
+app.set('view engine','ejs');
+app.set('views',path.join(__dirname,'views'));
 
 app.use(express.static('./assets'));
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
+
+var bodyParser = require('body-parser');
+// parse application/json, basically parse incoming Request Object as a JSON Object 
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded, basically can only parse incoming Request Object if strings or arrays
+app.use(bodyParser.urlencoded({ extended: false }));
+// combines the 2 above, then you can parse incoming Request Object if object, with nested objects, or generally any type.
+app.use(bodyParser.urlencoded({ extended: true }));
+
 var toDoList=[];
+app.get('/todo',function(req,res){
+    return res.render('todo',{
+        title:"TODO LIST",
+        todolist:toDoList
+    });
+})
 app.post('/todo',function(req,res){
    toDoList.push({
        description:req.body.description,
@@ -17,18 +35,35 @@ app.post('/todo',function(req,res){
        tododate:req.body.tododate
       
    });
-   console.log(toDoList[0].tododate);
-})
-app.get('/todo',function(req,res){
-    return res.render('todo',{
-        title:"TODO LIST",
-        todolist:toDoList
-    });
+   return res.redirect('/todo');
 })
 
+app.get('/delete/:description',function(req,res){
+    console.log(req.params);
+    let desc=req.params.description;
+   // let date_totel=req.params.tododate;
+
+    let index=toDoList.findIndex(des=>{
+        (des.description==desc)
+    }
+
+  
+    );
+    if(index!=-1){
+        console.log(index);
+        toDoList.splice(index,1);
+    }
+    return res.redirect('back');
+    // return res.render('todo',{
+    //     title:"TODO LIST",
+    //     todolist:toDoList
+
+       
+    // });
+})
 // app.use('/',require('./routes'));
 
-app.set('view engine','ejs');
+
 //app.set('views','./views');
 
 
