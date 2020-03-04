@@ -1,1 +1,71 @@
-<h1>Todo developed by gautam singh</h1>
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+            TODO LIST
+            </div>
+            <div class="card-body">
+                <form  action="/todo" method="POST">
+                    <div>
+                        <label for="desc">Description</label><br>
+                    </div>
+                    <div class="input-group form-group">
+                        
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input id="desc" type="text" name="description" class="form-control" placeholder="Enter Description">
+						
+					</div>
+                    <div class="row">
+                        <div class="form-group ">
+                        <label for="">Category:</label><br>
+                    <select name="category" id="" class="form-control">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                        <option value="other">Other</option>
+                    </select>
+                        </div>
+                    <div class="form-group offset-md-1">
+                        <label for="tododate">Date:</label><br>
+                        <input class="form-control" type="date" name="tododate" id="tododate" placeholder="DD/MM/YYYY">
+                    </div>
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus">ADD</i></button>
+            </div>
+                </form>
+
+</div>
+  <div class="card-footer">
+      <%  for(let i of todolist){ %>
+      <!-- <div class="row">
+          <span>
+        <input class="form-check-input col-md-1 offset-md-1" type="checkbox" name="course">
+        <span class="col-md-4 offset-md-1"><%= i.description %> </span>
+         <span><%= i.tododate %></span>
+         <button type="submit" class="btn btn-danger col-md-4 offset-md-1"><%= i.category %></button>
+         <span>
+      </div> -->
+      <table class="table w-100 table-hover text-white">
+          <tbody>
+              <tr>
+                  <td class="w-10"><input class="form-check-input " type="checkbox" name="check"></td>
+                          <td>
+                            <%= i.description %>
+                          </td>
+                          <td>
+                            <%= i.tododate %>
+                          </td>
+                  <td class="w-20">
+                    <button type="submit" class="btn btn-danger"><%= i.category %></button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <% } %>
+  </div>
+</div>
+</div>
+</div>

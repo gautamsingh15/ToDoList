@@ -1,9 +1,9 @@
-const express=require('express');
+// const express=require('express');
 
-const router =express.Router();
+// const router =express.Router();
 
-const todoController=require('../controllers/todo_controllers');
+// const todoController=require('../controllers/todo_controllers');
 
 
-router.get('/',todoController.todo);
-module.exports=router;
+// router.get('/todo',todoController.todo);
+// module.exports=router;

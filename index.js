@@ -8,12 +8,29 @@ app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
 app.use(express.static('./assets'));
+app.use(express.urlencoded());
+var toDoList=[];
+app.post('/todo',function(req,res){
+   toDoList.push({
+       description:req.body.description,
+       category:req.body.category,
+       tododate:req.body.tododate
+      
+   });
+   console.log(toDoList[0].tododate);
+})
+app.get('/todo',function(req,res){
+    return res.render('todo',{
+        title:"TODO LIST",
+        todolist:toDoList
+    });
+})
 
-
-app.use('/',require('./routes'));
+// app.use('/',require('./routes'));
 
 app.set('view engine','ejs');
 //app.set('views','./views');
+
 
 app.listen(port,function(err){
     if(err)  
