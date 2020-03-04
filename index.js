@@ -1,12 +1,17 @@
+//defining setup for express
 const express=require('express');
 const path=require('path');
 const app=express();
 const port=8000;
 const expressLayouts=require('express-ejs-layouts');
-const db=require('./config/mongoose');
+//const db=require('./config/mongoose');
+
+//for using layout
 app.use(expressLayouts);
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
+
+//for using view engine
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 
@@ -22,12 +27,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var toDoList=[];
+//for sending data from server side to html
 app.get('/todo',function(req,res){
     return res.render('todo',{
         title:"TODO LIST",
         todolist:toDoList
     });
 })
+//receiving data from the user
 app.post('/todo',function(req,res){
    toDoList.push({
        description:req.body.description,
@@ -37,9 +44,9 @@ app.post('/todo',function(req,res){
    });
    return res.redirect('/todo');
 })
-
+//deleting user detail
 app.get('/delete/:description',function(req,res){
-    console.log(req.params);
+   // console.log(req.params);
     let desc=req.params.description;
    // let date_totel=req.params.tododate;
 
@@ -50,7 +57,7 @@ app.get('/delete/:description',function(req,res){
   
     );
     if(index!=-1){
-        console.log(index);
+        //console.log(index);
         toDoList.splice(index,1);
     }
     return res.redirect('back');

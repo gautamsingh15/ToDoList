@@ -1,13 +1,13 @@
-const mongoose=require('mongoose');
-const db=mongoose.connection;
-mongoose.connect('mongodb://localhost/todo_development');
+// const mongoose=require('mongoose');
+// const db=mongoose.connection;
+// mongoose.connect('mongodb://localhost/todo_development');
 
 
 
-db.on('error',console.error.bind(console,'error connecting to mongodb database'));
+// db.on('error',console.error.bind(console,'error connecting to mongodb database'));
 
-db.once('once',function(){
-    console.log('connected to database');
-})
+// db.once('once',function(){
+//     console.log('connected to database');
+// })
 
-module.exports=db;
+// module.exports=db;

@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="d-flex justify-content-center h-100 align-items-stretch">
+        <!--variable length card  for taking Description,date,category & displaying todo-->
 		<div class="card">
 			<div class="card-header">
             TODO LIST
@@ -38,6 +39,7 @@
                 </form>
 
 </div>
+<!--card footer to display  todo It is done in two ways one using row & col and onother using table-->
   <div class="card-footer">
       <%  for(let i of todolist){ %>
       <!-- <div class="row">
@@ -51,14 +53,14 @@
       <table class="table w-100 text-white">
           <tbody>
               <tr>
-                  <td style="width: 5%"><input class="form-check-input " type="checkbox" name="check"></td>
-                          <td style="width: 55%">
+                  <td style="width: 3%"><input class="form-check-input " type="checkbox" name="check"></td>
+                          <td style="width: 50%">
                             <%= i.description %>
                           </td>
-                          <td style="width: 30%">
+                          <td style="width: 40%">
                             <%= i.tododate %>
                           </td>
-                  <td style="width: 10%">
+                  <td style="width: 7%">
                    <a href="/delete/<%= i.description %>"> <button type="submit" class="btn btn-danger"><%= i.category %></button></a>
                   </td>
               </tr>
